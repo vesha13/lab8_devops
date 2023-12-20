@@ -20,7 +20,7 @@ upload_job:
   rules:
     - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
   script:
-    - cd website
+    - cd app
     - yarn install
     - yarn build
 
