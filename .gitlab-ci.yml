@@ -1,7 +1,7 @@
 stages:
   - build
   - upload
-#  - deploy
+  - deploy
 
 build_job:
   stage: build
@@ -9,27 +9,14 @@ build_job:
 #    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 #      changes:
 #        - app/*
-#        - app/**/*
+#        - app//*
   script:
     - cd app
     - pylint -d C0301 app.py
     - docker build -t app:$CI_COMMIT_SHORT_SHA .
 
 
-upload_job:
+upload:
   stage: upload
-#  rules:
-#    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-#      changes:
-#        - app/*
-#        - app/**/*
   script:
     - lab8devops load docker-image app:${CI_COMMIT_SHORT_SHA}
-
-
-#deploy_job:
-#  stage: deploy
-#  environment:
-#    name: production
-#  script:
-#    - kubectl get pods
