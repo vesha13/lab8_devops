@@ -48,7 +48,6 @@ def cpu(env, cpu_intensities, task_queue, cpu_tasks_serviced):
 
 def gpu(env, gpu_intensities, task_queue, gpu_tasks_serviced):
     gpu_load = 0
-
     while True:
         if not task_queue.items:
             yield env.timeout(1)  # Pause for 1 unit of time
@@ -73,7 +72,6 @@ def simulate():
     cpu_intensities = [0.7, 0.5, 0.4, 0.3]
     gpu_intensities = [1.4, 1.2, 0.8, 0.4]
     total_time = 1000
-
     queue_capacity = 30
     env = simpy.Environment()
     task_queue = simpy.Store(env, capacity=queue_capacity)
