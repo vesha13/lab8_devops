@@ -1,3 +1,38 @@
-job:
+stages:
+  - build
+  - upload
+  - deploy
+
+build_job:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes:
+        - app/*
   script:
-    - echo test
+    - cd app
+    - yarn install
+    - yarn build
+
+
+upload_job:
+  stage: upload
+  rules:
+    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
+  script:
+    - cd website
+    - yarn install
+    - yarn build
+
+
+deploy_job:
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes:
+        - app/*
+
+  script:
+    - echo "Deploying the application..."
+    - # Команды для развертывания (деплоя) приложения, например, применение Kubernetes манифестов
+  when: manual  # Этот job будет запускаться вручную
