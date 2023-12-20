@@ -1,7 +1,7 @@
 stages:
   - build
   - upload
-  - deploy
+#  - deploy
 
 build_job:
   stage: build
@@ -12,34 +12,26 @@ build_job:
         - app/**/*
   script:
     - cd app
-    - yarn install
-    - yarn build
-    - mv ./build ../pages
-  artifacts:
-    paths:
-      - pages
+    - pylint -d C0301 app.py
+    - python app.py
 
 
 upload_job:
   stage: upload
-  rules:
-    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
   script:
-    - cd app
-    - yarn install
-    - yarn build
+    - echo test
 
 
-deploy_job:
-  stage: deploy
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      changes:
-        - app/*
-        - app/**/*
-  script:
-    - mv ./pages ./public
-    - mv ./${TEXTBOOK_OUTPUT_DIRECTORY} ./public/documents
-    - mv ./presentations ./public/presentations
-    - rm -rf ${DEPLOY_DIR}/*
-    - cp -r ./public/. ${DEPLOY_DIR}/.
+#deploy_job:
+#  stage: deploy
+#  rules:
+#    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+#      changes:
+#        - app/*
+#        - app/**/*
+#  script:
+#    - mv ./pages ./public
+#    - mv ./${TEXTBOOK_OUTPUT_DIRECTORY} ./public/documents
+#    - mv ./presentations ./public/presentations
+#    - rm -rf ${DEPLOY_DIR}/*
+#    - cp -r ./public/. ${DEPLOY_DIR}/.
