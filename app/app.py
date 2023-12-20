@@ -7,6 +7,7 @@ class Task:
         self.priority = priority
         self.service_intensity = service_intensity
 
+
 def task_generator(env, arrival_intensities, task_queue, rejected_tasks):
     tasks = []
     for i in range(len(arrival_intensities)):

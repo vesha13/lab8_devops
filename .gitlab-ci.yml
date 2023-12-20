@@ -29,14 +29,7 @@ upload_job:
 
 #deploy_job:
 #  stage: deploy
-#  rules:
-#    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-#      changes:
-#        - app/*
-#        - app/**/*
+#  environment:
+#    name: production
 #  script:
-#    - mv ./pages ./public
-#    - mv ./${TEXTBOOK_OUTPUT_DIRECTORY} ./public/documents
-#    - mv ./presentations ./public/presentations
-#    - rm -rf ${DEPLOY_DIR}/*
-#    - cp -r ./public/. ${DEPLOY_DIR}/.
+#    - kubectl get pods
