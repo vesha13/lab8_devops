@@ -16,5 +16,10 @@ build_job:
 
 upload:
   stage: upload
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes:
+        - app/*
+        - app/**/*
   script:
+    - git remote set-url origin "${CI_REPOSITORY_URL}"
     - lab8devops load docker-image app:${CI_COMMIT_SHORT_SHA}
