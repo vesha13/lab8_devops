@@ -9,10 +9,15 @@ build_job:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       changes:
         - app/*
+        - app/**/*
   script:
     - cd app
     - yarn install
     - yarn build
+    - mv ./build ../pages
+  artifacts:
+    paths:
+      - pages
 
 
 upload_job:
@@ -31,8 +36,10 @@ deploy_job:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       changes:
         - app/*
-
+        - app/**/*
   script:
-    - echo "Deploying the application..."
-    - # Команды для развертывания (деплоя) приложения, например, применение Kubernetes манифестов
-  when: manual  # Этот job будет запускаться вручную
+    - mv ./pages ./public
+    - mv ./${TEXTBOOK_OUTPUT_DIRECTORY} ./public/documents
+    - mv ./presentations ./public/presentations
+    - rm -rf ${DEPLOY_DIR}/*
+    - cp -r ./public/. ${DEPLOY_DIR}/.
