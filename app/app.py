@@ -144,8 +144,7 @@ plt.ylabel('Rejected Count')
 plt.title('Number of Rejected Tasks')
 plt.show()
 
-# %%
-# nichego.net
+
 import random
 import simpy
 

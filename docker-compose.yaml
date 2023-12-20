@@ -1,0 +1,15 @@
+services:
+  app:
+    image: iu5devops/app
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: lab8devops
+    networks:
+      - iu5devops
+    ports:
+      - 8080:5000
+#    environment:
+#      - APP_SERVICE_NAME=iu5devops-app
+networks:
+  iu5devops:
