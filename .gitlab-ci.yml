@@ -13,8 +13,9 @@ build_job:
   script:
     - docker build -t app:$CI_COMMIT_SHORT_SHA .
 
-upload:
+upload_job:
   stage: upload
+  rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       changes:
         - app/*
