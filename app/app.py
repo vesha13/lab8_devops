@@ -7,7 +7,6 @@ class Task:
         self.priority = priority
         self.service_intensity = service_intensity
 
-
 def task_generator(env, arrival_intensities, task_queue, rejected_tasks):
     tasks = []
     for i in range(len(arrival_intensities)):
@@ -45,7 +44,6 @@ def cpu(env, cpu_intensities, task_queue, cpu_tasks_serviced):
                 cpu_load += service_time
                 cpu_tasks_serviced.append(task)
                 print(f"Task {task.task_id} serviced by CPU at {env.now}, service time: {service_time}")
-
 
 def gpu(env, gpu_intensities, task_queue, gpu_tasks_serviced):
     gpu_load = 0
