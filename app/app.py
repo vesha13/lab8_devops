@@ -145,8 +145,6 @@ plt.title('Number of Rejected Tasks')
 plt.show()
 
 
-import random
-import simpy
 
 
 class Task:
