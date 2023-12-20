@@ -46,8 +46,6 @@ def cpu(env, cpu_intensities, task_queue, cpu_tasks_serviced):
                 print(f"Task {task.task_id} serviced by CPU at {env.now}, service time: {service_time}")
 
 
-
-
 def gpu(env, gpu_intensities, task_queue, gpu_tasks_serviced):
     gpu_load = 0
     while True:

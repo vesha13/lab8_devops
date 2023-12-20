@@ -5,11 +5,11 @@ stages:
 
 build_job:
   stage: build
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      changes:
-        - app/*
-        - app/**/*
+#  rules:
+#    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+#      changes:
+#        - app/*
+#        - app/**/*
   script:
     - cd app
     - pylint -d C0301 app.py
@@ -18,11 +18,11 @@ build_job:
 
 upload_job:
   stage: upload
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      changes:
-        - app/*
-        - app/**/*
+#  rules:
+#    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+#      changes:
+#        - app/*
+#        - app/**/*
   script:
     - lab8devops load docker-image app:${CI_COMMIT_SHORT_SHA}
 
