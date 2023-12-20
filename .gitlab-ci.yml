@@ -3,38 +3,25 @@ stages:
   - upload
   - deploy
 
-build_job:
+variables:
+  DOCKER_HOST: tcp://docker:2375/
+  DOCKER_DRIVER: overlay2
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN <your_registry_address>
+
+build:
   stage: build
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      changes:
-        - app/*
-        - app/**/*
   script:
-    - cd app
-    - yarn install
-    - yarn build
-    - mv ./build ../pages
-  artifacts:
-    paths:
-      - pages
+    - docker build -t lab8devops .
 
-
-upload_job:
+upload:
   stage: upload
-  rules:
-    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == $CI_DEFAULT_BRANCH
   script:
-    - cd app
-    - yarn install
-    - yarn build
+    - docker push lab8devops
 
-
-deploy_job:
+deploy:
   stage: deploy
   script:
-    - mv ./pages ./public
-    - mv ./${TEXTBOOK_OUTPUT_DIRECTORY} ./public/documents
-    - mv ./presentations ./public/presentations
-    - rm -rf ${DEPLOY_DIR}/*
-    - cp -r ./public/. ${DEPLOY_DIR}/.
+    - docker pull lab8devops
+    - docker run -d -p 8080:80 --name app lab8devops
