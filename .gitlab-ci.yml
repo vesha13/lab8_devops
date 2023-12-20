@@ -24,7 +24,8 @@ upload_job:
         - app/*
         - app/**/*
   script:
-   - kind load docker-image app:${CI_COMMIT_SHORT_SHA}
+    - cd app
+    - kind load docker-image app:${CI_COMMIT_SHORT_SHA}
 
 
 #deploy_job:
