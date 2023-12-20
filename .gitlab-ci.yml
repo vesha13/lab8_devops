@@ -13,7 +13,7 @@ build_job:
   script:
     - cd app
     - pylint -d C0301 app.py
-    - python app.py
+    - docker build -t app:$CI_COMMIT_SHORT_SHA .
 
 
 upload_job:
