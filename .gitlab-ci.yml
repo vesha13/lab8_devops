@@ -17,4 +17,4 @@ upload_job:
   stage: upload
   script:
     - git remote set-url origin "${CI_REPOSITORY_URL}"
-    - lab8devops load docker-image app:${CI_COMMIT_SHORT_SHA}
+    - kind load docker-image app:${CI_COMMIT_SHORT_SHA}
