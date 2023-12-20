@@ -1,13 +1,11 @@
 import random
 import simpy
 
-
 class Task:
     def __init__(self, task_id, priority, service_intensity):
         self.task_id = task_id
         self.priority = priority
         self.service_intensity = service_intensity
-
 
 def task_generator(env, arrival_intensities, task_queue, rejected_tasks):
     tasks = []
@@ -106,13 +104,7 @@ def simulate():
     }
 
 
-# results1 = []
-# for _ in range(10):
-#     results1.append(simulate())
-#
-# #results = simulate()
-# print(results1)
-# %%
+
 import matplotlib.pyplot as plt
 
 # ... Your existing code ...

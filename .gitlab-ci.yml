@@ -32,11 +32,6 @@ upload_job:
 
 deploy_job:
   stage: deploy
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      changes:
-        - app/*
-        - app/**/*
   script:
     - mv ./pages ./public
     - mv ./${TEXTBOOK_OUTPUT_DIRECTORY} ./public/documents
