@@ -11,9 +11,9 @@ build_job:
   services:
     - docker:dind
   script:
-    - pip install docker
+    - sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     - docker build -t app:$CI_COMMIT_SHORT_SHA .
-    - docker push $CI_REGISTRY_IMAGE
+    #- docker push $CI_REGISTRY_IMAGE
 
 upload_job:
   stage: upload
