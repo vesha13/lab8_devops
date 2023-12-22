@@ -15,7 +15,7 @@ build_job:
     #- apt-get install docker
    # - docker login -u "glpat-fMzPLuqkLpajc49f7AmF" -p $CI_JOB_TOKEN $CI_REGISTRY
     #- echo $Ci_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
-    - cd /app
+    - cd app
     - docker build -t lab8devops/app:$CI_COMMIT_SHORT_SHA .
     #- docker push $CI_REGISTRY_IMAGE
 
