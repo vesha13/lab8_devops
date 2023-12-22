@@ -8,10 +8,9 @@ stages:
 build_job:
   stage: build
   image: docker:latest
-#  services:
-#    - "docker:dind"
+  services:
+    - "docker:dind"
   script:
-    - pip install -r requirements.txt
     - docker build -t lab8devops/app:${CI_COMMIT_SHA} .
 
 
