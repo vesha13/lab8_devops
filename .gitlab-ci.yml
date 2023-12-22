@@ -13,7 +13,7 @@ build_job:
   script:
     #- echo "$Ci_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password "$Ci_REGISTRY_PASSWORD" "$CI_REGISTRY"
     - echo $CI_JOB_TOKEN
-    - docker login -u "glptt-f26648bd0c658b78377f6a9d5440545fa9f31363" -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker login -u "glpat-fMzPLuqkLpajc49f7AmF" -p $CI_JOB_TOKEN $CI_REGISTRY
     #- echo $Ci_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
     - docker build -t app:$CI_COMMIT_SHORT_SHA .
     - docker push $CI_REGISTRY_IMAGE
