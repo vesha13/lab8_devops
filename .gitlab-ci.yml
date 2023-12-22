@@ -7,10 +7,16 @@ stages:
 
 build_job:
   stage: build
+  image: docker:latest
   script:
     - echo test
+    - docker build -t lab8devops/app:${CI_COMMIT_SHA} .
 #    - pip install -r requirements.txt
 #    - docker build -t app:$CI_COMMIT_SHORT_SHA .
+  tags:
+    - docker
+
+
 upload_job:
   stage: upload
   script:
