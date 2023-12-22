@@ -11,7 +11,7 @@ build_job:
   services:
     - docker:dind
   script:
-    - sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    - apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     - docker build -t app:$CI_COMMIT_SHORT_SHA .
     #- docker push $CI_REGISTRY_IMAGE
 
