@@ -11,7 +11,7 @@ build_job:
   services:
     - docker:dind
   script:
-    - docker login registry.gitlab.com
+    - echo $Ci_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
     - docker build -t app:$CI_COMMIT_SHORT_SHA .
     - docker push $CI_REGISTRY_IMAGE
 
