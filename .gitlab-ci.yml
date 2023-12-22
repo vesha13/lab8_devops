@@ -9,7 +9,7 @@ build_job:
   stage: build
   image: docker
   services:
-    -docker:dind
+    - docker:dind
   script:
     - echo $CI_REGISTRY-PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
     - docker build -t lab8devops/app:$CI_COMMIT_SHA .
