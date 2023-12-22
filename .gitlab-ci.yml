@@ -21,13 +21,12 @@ upload_job:
   services:
     - docker:dind
   script:
-    - kind create cluster --name lab8
-    - kind load docker-image lab8devops${CI_COMMIT_SHORT_SHA} --name lab8
-    #- kind load docker-image lab8devops:${CI_COMMIT_SHORT_SHA}
-#    - Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-#    - choco install kind --yes
-#    - kind create cluster --name l8
+    - echo test
+    #- kind create cluster --name lab8
+    #- kind load docker-image lab8devops${CI_COMMIT_SHORT_SHA} --name lab8
 
-
-    #- echo kind
-    #- kind load docker-image lab8devops/app:${CI_COMMIT_SHORT_SHA}
+deploy_job:
+  environment:
+    name: production
+  script:
+    - kubectl get pods
