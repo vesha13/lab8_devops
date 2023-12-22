@@ -11,15 +11,11 @@ build_job:
   services:
     - docker:dind
   script:
-    #- echo "$Ci_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password "$Ci_REGISTRY_PASSWORD" "$CI_REGISTRY"
-    #- apt-get install docker
-   # - docker login -u "glpat-fMzPLuqkLpajc49f7AmF" -p $CI_JOB_TOKEN $CI_REGISTRY
-    #- echo $Ci_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
     - cd app
     - docker build -t lab8devops/app:$CI_COMMIT_SHORT_SHA .
-    #- docker push $CI_REGISTRY_IMAGE
+
 
 upload_job:
   stage: upload
   script:
-    - echo test
+    - kind load docker-image lab8devops/app:${CI_COMMIT_SHORT_SHA}
