@@ -1,4 +1,4 @@
-image: docker:latest
+image: "python:3.11.4"
 
 stages:
   - build
@@ -7,11 +7,13 @@ stages:
 
 build_job:
   stage: build
+  image: docker
   services:
-    - docker:dind
+    -docker:dind
   script:
-  #  - pip install -r requirements.txt
+    - echo $CI_REGISTRY-PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
     - docker build -t lab8devops/app:$CI_COMMIT_SHA .
+    - docker push $CI_REGISTRY_IMAGE
 
 upload_job:
   stage: upload
