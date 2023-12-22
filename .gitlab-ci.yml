@@ -25,8 +25,8 @@ upload_job:
     #- kind create cluster --name lab8
     #- kind load docker-image lab8devops${CI_COMMIT_SHORT_SHA} --name lab8
 
-deploy_job:
-  environment:
-    name: production
-  script:
-    - kubectl get pods
+# deploy_job:
+#   environment:
+#     name: production
+#   script:
+#     - kubectl get pods
