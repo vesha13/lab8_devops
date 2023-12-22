@@ -8,6 +8,8 @@ stages:
 build_job:
   stage: build
   image: docker:latest
+  services:
+    - "docker:dind"
   script:
     - echo test
     - docker build -t lab8devops/app:${CI_COMMIT_SHA} .
@@ -15,7 +17,6 @@ build_job:
 #    - docker build -t app:$CI_COMMIT_SHORT_SHA .
   tags:
     - docker
-
 
 upload_job:
   stage: upload
