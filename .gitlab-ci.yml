@@ -18,9 +18,12 @@ build_job:
 upload_job:
   stage: upload
   script:
-    - Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-    - choco install kind --yes
-    - kind create cluster --name l8
-    - kind load docker-image lab8devops:${CI_COMMIT_SHORT_SHA}
+    - cd app
+    - echo kind
+#    - Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+#    - choco install kind --yes
+#    - kind create cluster --name l8
+#    - kind load docker-image lab8devops:${CI_COMMIT_SHORT_SHA}
+
     #- echo kind
     #- kind load docker-image lab8devops/app:${CI_COMMIT_SHORT_SHA}
