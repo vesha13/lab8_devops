@@ -1,6 +1,6 @@
 services:
   app:
-    image: lab8devops/app
+    image: lab8devops
     build:
       context: ./app
       dockerfile: Dockerfile

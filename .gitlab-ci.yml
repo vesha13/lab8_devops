@@ -17,10 +17,13 @@ build_job:
 
 upload_job:
   stage: upload
+  image: kindest/node:v1.22.1
+  services:
+    - docker:dind
   script:
-    - cd app
-    - echo kind
-    - kind load docker-image lab8devops:${CI_COMMIT_SHORT_SHA}
+    - kind create cluster --name lab8
+    - kind load docker-image lab8devops:latest --name lab8
+    #- kind load docker-image lab8devops:${CI_COMMIT_SHORT_SHA}
 #    - Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 #    - choco install kind --yes
 #    - kind create cluster --name l8
