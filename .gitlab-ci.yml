@@ -1,16 +1,20 @@
-image: "python:3.10.3"
+image: "python:3.11.4"
 
 stages:
   - build
   - upload
-  - deploy
+#  - deploy
 
 build_job:
   stage: build
   script:
-    - pip install -r requirements.txt
-    - docker build -t app:$CI_COMMIT_SHORT_SHA .
-
+    - echo test
+#    - pip install -r requirements.txt
+#    - docker build -t app:$CI_COMMIT_SHORT_SHA .
+upload_job:
+  stage: upload
+  script:
+    - echo test
 
 #upload_job:
 #  stage: upload
