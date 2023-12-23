@@ -1,7 +1,7 @@
-#image: "docker:latest"
+#image: "python"
 
 stages:
-#  - test
+  - test
   - build
   - upload
 #  - deploy
@@ -10,15 +10,18 @@ stages:
 #  stage: test
 #  script:
 #    - cd app
+#    - pip install pylint
 #    - pylint -d C0301 app.py
+
 #neeed
+
 build_job:
   stage: build
   image: docker:stable
   services:
     - docker:dind
   script:
-    #- cd app
+    - cd app
     - docker build -t lab8devops:${CI_COMMIT_SHORT_SHA} .
     - docker images
 
