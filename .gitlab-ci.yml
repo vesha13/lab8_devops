@@ -17,7 +17,7 @@ stages:
 
 upload_job:
   stage: upload
-  image: "sha256:0911803a52993675d7d784fc60a1b32cddb08bfc16f527a6395af4cc919baf9a
+  image: sha256:0911803a52993675d7d784fc60a1b32cddb08bfc16f527a6395af4cc919baf9a
 #  services:
 #    - docker:dind
   script:
