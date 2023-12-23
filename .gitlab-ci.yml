@@ -13,7 +13,7 @@ build_job:
     - docker:dind
   script:
     - cd app
-    - docker build -t lab8devops:$CI_COMMIT_SHORT_SHA .
+    - docker build -t lab8devops
 
 upload_job:
   stage: upload
@@ -21,6 +21,7 @@ upload_job:
   services:
     - docker:dind
   script:
+    - cd app
     - apk add --update curl
     - curl -Lo /usr/local/bin/kind https://kind.sigs.k8s.io/dl/v0.7.0/kind-linux-amd64
     - chmod +x /usr/local/bin/kind
