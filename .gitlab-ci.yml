@@ -1,33 +1,29 @@
 image: "docker:latest"
 
 stages:
-  - build
+  #- build
   - upload
 #  - deploy
 
-build_job:
-  stage: build
-  image: docker:stable
-  services:
-    - docker:dind
-  script:
-    - echo test
-    #- cd app
-    #- docker build -t lab8devops:$CI_COMMIT_SHORT_SHA .
+
+#build_job:
+#  stage: build
+#  image: docker:stable
+#  services:
+#    - docker:dind
+#  script:
+#    - cd app
+#    - docker build -t lab8devops:$CI_COMMIT_SHORT_SHA .
 
 
 upload_job:
   stage: upload
-  image: debian:12-slim
-  services:
-    - docker:dind
+  image: kindest/node:v1.27.3
+#  services:
+#    - docker:dind
   script:
-    - apt install curl
-    - curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.17.0/kind-linux-amd64
-    - chmod +x ./kind
-    - mv ./kind /usr/local/bin/kind
-    #- kind create cluster --name lab8
-    #- kind load docker-image lab8devops${CI_COMMIT_SHORT_SHA} --name lab8
+    - kind create cluster --name lab8
+    - kind load docker-image lab8devops${CI_COMMIT_SHORT_SHA} --name lab8
 
 # deploy_job:
 #   environment:
