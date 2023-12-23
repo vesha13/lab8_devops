@@ -17,6 +17,7 @@ stages:
 
 upload_job:
   stage: upload
+
   image: kindest/base:v20230525-4c49613f
 #  services:
 #    - docker:dind
