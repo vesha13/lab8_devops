@@ -18,11 +18,11 @@ stages:
 
 upload_job:
   stage: upload
-  image: docker:stable
+  image: kindest/node:v1.27.3@sha256:3966ac761ae0136263ffdb6cfd4db23ef8a83cba8a463690e98317add2c9ba72
   services:
     - docker:dind
   script:
-    - docker pull kindest/node:v1.27.3
+    #- docker pull kindest/node:v1.27.3
     - kind create cluster --name lab8
     - kind load docker-image lab8devops${CI_COMMIT_SHORT_SHA} --name lab8
 
