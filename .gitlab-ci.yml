@@ -1,23 +1,25 @@
 #image: "docker:latest"
 
 stages:
-  - build
+  #- build
   - upload
 #  - deploy
 
 #neeed
-build_job:
-  stage: build
-  image: docker:stable
-  services:
-    - docker:dind
-  script:
-    - cd app
-    - docker build -t lab8devops:$CI_COMMIT_SHORT_SHA .
+#build_job:
+#  stage: build
+#  image: docker:stable
+#  services:
+#    - docker:dind
+#  script:
+#    - cd app
+#    - docker build -t lab8devops:$CI_COMMIT_SHORT_SHA .
 
 upload_job:
   stage: upload
-  image: docker:stable
+  image:
+    name: docker:stable
+    entrypoint: [ "/bin/sh", "-c" ]
   services:
     - docker:dind
   script:
