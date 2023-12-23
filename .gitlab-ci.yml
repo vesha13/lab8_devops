@@ -1,10 +1,16 @@
 #image: "docker:latest"
 
 stages:
+  - test
   - build
   - upload
 #  - deploy
 
+test_job:
+  stage: test
+  script:
+    - cd app
+    - pylint -d C0301 app.py
 #neeed
 build_job:
   stage: build
@@ -12,8 +18,9 @@ build_job:
   services:
     - docker:dind
   script:
-    - cd app
+    #- cd app
     - docker build -t lab8devops:${CI_COMMIT_SHORT_SHA} .
+    - docker images
 
 upload_job:
   stage: upload
