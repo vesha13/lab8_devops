@@ -1,26 +1,25 @@
 #image: "docker:latest"
 
 stages:
-  # - build +
+  - build
   - upload
 #  - deploy
 
 #neeed
-#build_job:
-#  stage: build
-#  image: docker:stable
-#  services:
-#    - docker:dind
-#  script:
-#    - cd app
-#    - docker build -t lab8devops:$CI_COMMIT_SHORT_SHA .
+build_job:
+  stage: build
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - cd app
+    - docker build -t lab8devops:$CI_COMMIT_SHORT_SHA .
 
 upload_job:
   stage: upload
-
-  image: kindest/base:v20230525-4c49613f
-#  services:
-#    - docker:dind
+  image: kindest/node:v1.27.3
+  services:
+    - docker:dind
   script:
     #- docker pull kindest/node:v1.27.3
     - kind create cluster --name lab8
