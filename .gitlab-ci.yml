@@ -6,7 +6,7 @@ stages:
   - upload
 #  - deploy
 
-test_job:
+#test_job:
 #  stage: test
 #  script:
 #    - cd app
