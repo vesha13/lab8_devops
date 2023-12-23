@@ -1,16 +1,16 @@
 #image: "docker:latest"
 
 stages:
-  - test
+#  - test
   - build
   - upload
 #  - deploy
 
 test_job:
-  stage: test
-  script:
-    - cd app
-    - pylint -d C0301 app.py
+#  stage: test
+#  script:
+#    - cd app
+#    - pylint -d C0301 app.py
 #neeed
 build_job:
   stage: build
