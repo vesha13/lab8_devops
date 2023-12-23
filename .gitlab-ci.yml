@@ -17,12 +17,11 @@ stages:
 
 upload_job:
   stage: upload
-  image:
-    name: docker:stable
-    entrypoint: [ "/bin/sh", "-c" ]
+  image: docker:stable
   services:
     - docker:dind
   script:
+    - apk add --update curl
     - docker login -u vesha13 -p docker123
     - docker pull kindest/node:v1.27.3
     - kind create cluster --name lab8
