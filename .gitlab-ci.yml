@@ -1,8 +1,8 @@
-image: "docker:latest"
+#image: "docker:latest"
 
 stages:
-  #- build
-  - upload
+  - build
+  #- upload
 #  - deploy
 
 
@@ -15,16 +15,29 @@ stages:
 #    - cd app
 #    - docker build -t lab8devops:$CI_COMMIT_SHORT_SHA .
 
-
-upload_job:
-  stage: upload
-  image: kindest/node:v1.27.3@sha256:3966ac761ae0136263ffdb6cfd4db23ef8a83cba8a463690e98317add2c9ba72
+build_job:
+  stage: build
+  image: docker:stable
   services:
     - docker:dind
   script:
-    #- docker pull kindest/node:v1.27.3
-    - kind create cluster --name lab8
-    - kind load docker-image lab8devops${CI_COMMIT_SHORT_SHA} --name lab8
+    - cd app
+    - docker login registry.gitlab.com
+    - docker build -t registry.gitlab.com/vesha13/lab8_devops$CI_COMMIT_SHORT_SHA .
+    - docker push registry.gitlab.com/vesha13/lab8_devops
+    #- docker build -t lab8devops:$CI_COMMIT_SHORT_SHA .
+
+
+
+#upload_job:
+#  stage: upload
+#  image: kindest/node:v1.27.3@sha256:3966ac761ae0136263ffdb6cfd4db23ef8a83cba8a463690e98317add2c9ba72
+##  services:
+##    - docker:dind
+#  script:
+#    #- docker pull kindest/node:v1.27.3
+#    - kind create cluster --name lab8
+#    - kind load docker-image lab8devops${CI_COMMIT_SHORT_SHA} --name lab8
 
 # deploy_job:
 #   environment:
