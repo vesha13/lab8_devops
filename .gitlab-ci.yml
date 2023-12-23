@@ -37,7 +37,7 @@ upload_job:
     - docker login -u vesha13 -p docker123
     - docker pull kindest/node:v1.27.3
     - kind create cluster --name lab8
-    - kind load docker-image docker.io/library/lab8devops:$CI_COMMIT_SHORT_SHA --name lab8
+    #- kind load docker-image docker.io/library/lab8devops:$CI_COMMIT_SHORT_SHA --name lab8
 
 
 #upload_job:
@@ -50,8 +50,8 @@ upload_job:
 #    - kind create cluster --name lab8
 #    - kind load docker-image lab8devops${CI_COMMIT_SHORT_SHA} --name lab8
 
-# deploy_job:
-#   environment:
-#     name: production
-#   script:
-#     - kubectl get pods
+deploy_job:
+  environment:
+     name: production
+  script:
+     - kubectl get pods
