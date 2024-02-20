@@ -118,7 +118,6 @@ gpu_serviced_counts = [result['gpu_serviced_count'] for result in results]
 rejected_counts = [result['rejected_count'] for result in results]
 first_counts = [result['cpu_serviced_count'] + result['gpu_serviced_count'] for result in results]
 
-
 # Plot 1: CPU and GPU tasks serviced
 attempts = range(1, 11)  # Number of attempts
 plt.plot(attempts, cpu_serviced_counts, marker='o', linestyle='-', label='CPU')
@@ -128,6 +127,7 @@ plt.ylabel('Number of Tasks Serviced')
 plt.title('CPU and GPU Tasks Serviced')
 plt.legend()
 plt.show()
+
 
 # Plot 2: Rejected count
 plt.plot(attempts, rejected_counts, marker='o', linestyle='-', color='r')
