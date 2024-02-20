@@ -104,7 +104,6 @@ def simulate():
     }
 
 
-
 import matplotlib.pyplot as plt
 
 # ... Your existing code ...
@@ -118,6 +117,7 @@ cpu_serviced_counts = [result['cpu_serviced_count'] for result in results]
 gpu_serviced_counts = [result['gpu_serviced_count'] for result in results]
 rejected_counts = [result['rejected_count'] for result in results]
 first_counts = [result['cpu_serviced_count'] + result['gpu_serviced_count'] for result in results]
+
 
 # Plot 1: CPU and GPU tasks serviced
 attempts = range(1, 11)  # Number of attempts
