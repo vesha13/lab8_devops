@@ -1,20 +1,7 @@
-#image: "python"
-
 stages:
-# - test
   - build
   - upload
   - deploy
-
-#test_job:
-#  stage: test
-#  script:
-#    - cd app
-#    - pip install pylint
-#    - pylint -d C0301 app.py
-
-#neeed
-
 build_job:
   stage: build
   image: docker:stable
@@ -24,7 +11,6 @@ build_job:
     - cd app
     - docker build -t lab8devops:${CI_COMMIT_SHORT_SHA} .
     - docker images
-
 upload_job:
   stage: upload
   image: docker:stable
@@ -37,19 +23,6 @@ upload_job:
     - docker login -u vesha13 -p docker123
     - docker pull kindest/node:v1.27.3
     - kind create cluster --name lab8
-    #- kind load docker-image docker.io/library/lab8devops:$CI_COMMIT_SHORT_SHA --name lab8
-
-
-#upload_job:
-#  stage: upload
-#  image: kindest/node:v1.27.3
-#  services:
-#    - docker:dind
-#  script:
-#    #- docker pull kindest/node:v1.27.3
-#    - kind create cluster --name lab8
-#    - kind load docker-image lab8devops${CI_COMMIT_SHORT_SHA} --name lab8
-
 deploy_job:
   stage: deploy
   environment:
@@ -58,5 +31,5 @@ deploy_job:
   script:
     - apk add --update curl
     - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-    - chmod +x kubectl
+    - chmod +x /usr/local/bin/kubectl
     - kubectl get pods
