@@ -274,4 +274,3 @@ plt.ylabel('Rejected Count')
 plt.title('Number of Rejected Tasks')
 plt.show()
 
-print('Hello')
